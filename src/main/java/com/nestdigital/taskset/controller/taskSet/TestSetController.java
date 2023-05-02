@@ -80,4 +80,8 @@ public class TestSetController {
         Optional<TaskSet> taskSetList=taskSetService.getTaskSetById(id);
         return taskSetList ;
     }
+    @PostMapping("/deleteTaskSet/{id}")
+    String deleteTaskSet(@PathVariable int id){
+        return taskSetService.deleteTaskSet(id);
+    }
 }

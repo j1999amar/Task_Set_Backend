@@ -14,6 +14,8 @@ public interface TaskSetService {
 
     Optional<TaskSet> getTaskSetById(int id);
 
+    String deleteTaskSet(int id);
+
 
 
 
