@@ -1,6 +1,10 @@
 package com.nestdigital.taskset.service.taskSet;
 
+import com.nestdigital.taskset.dto.TaskSetDTO;
+import com.nestdigital.taskset.model.eventType.EventType;
+import com.nestdigital.taskset.model.facilities.Facilities;
 import com.nestdigital.taskset.model.taskSet.TaskSet;
+import com.nestdigital.taskset.model.units.Units;
 import com.nestdigital.taskset.repository.taskSet.TaskSetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,12 +12,14 @@ import org.springframework.stereotype.Service;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 
 @Service
 public class TaskSetServiceImpl implements TaskSetService {
     @Autowired
     TaskSetRepository taskSetRepository;
+
 
     @Override
     public TaskSet updateTaskSet(TaskSet taskSet) {
@@ -70,6 +76,25 @@ public class TaskSetServiceImpl implements TaskSetService {
 
         }
 
+    }
+
+    @Override
+    public TaskSetDTO convertEntityToDTO(TaskSet taskSet) {
+        TaskSetDTO taskSetDTO=new TaskSetDTO();
+        taskSetDTO.setId(taskSet.getId());
+        taskSetDTO.setName(taskSet.getName());
+        taskSetDTO.setDescription(taskSet.getDescription());
+        taskSetDTO.setEventType( taskSet.getEventType());
+        taskSetDTO.setUnit(taskSet.getUnit());
+        taskSetDTO.setFacilities(taskSet.getFacilities());
+        taskSetDTO.setApplyToAll(taskSet.isApplyToAll());
+        taskSetDTO.setTasks(taskSet.getTasks());
+        return taskSetDTO;
+    }
+
+    @Override
+    public List<TaskSetDTO> getTaskSetList() {
+        return taskSetRepository.findAll().stream().map(this::convertEntityToDTO).collect(Collectors.toList());
     }
 
 }
