@@ -5,7 +5,11 @@ import com.nestdigital.taskset.model.eventType.EventType;
 import com.nestdigital.taskset.model.facilities.Facilities;
 import com.nestdigital.taskset.model.taskSet.TaskSet;
 import com.nestdigital.taskset.model.units.Units;
+import com.nestdigital.taskset.repository.eventType.EventTypeRepository;
+import com.nestdigital.taskset.repository.facilities.FacilitiesRepository;
 import com.nestdigital.taskset.repository.taskSet.TaskSetRepository;
+import com.nestdigital.taskset.repository.tasks.TasksRepository;
+import com.nestdigital.taskset.repository.units.UnitsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +23,14 @@ import java.util.stream.Collectors;
 public class TaskSetServiceImpl implements TaskSetService {
     @Autowired
     TaskSetRepository taskSetRepository;
+    @Autowired
+    EventTypeRepository eventTypeRepository;
+    @Autowired
+    UnitsRepository unitsRepository;
+    @Autowired
+    FacilitiesRepository facilitiesRepository;
+    @Autowired
+    TasksRepository tasksRepository;
 
 
     @Override
@@ -81,14 +93,10 @@ public class TaskSetServiceImpl implements TaskSetService {
     @Override
     public TaskSetDTO convertEntityToDTO(TaskSet taskSet) {
         TaskSetDTO taskSetDTO=new TaskSetDTO();
-        taskSetDTO.setId(taskSet.getId());
-        taskSetDTO.setName(taskSet.getName());
-        taskSetDTO.setDescription(taskSet.getDescription());
-        taskSetDTO.setEventType( taskSet.getEventType());
-        taskSetDTO.setUnit(taskSet.getUnit());
-        taskSetDTO.setFacilities(taskSet.getFacilities());
-        taskSetDTO.setApplyToAll(taskSet.isApplyToAll());
-        taskSetDTO.setTasks(taskSet.getTasks());
+        taskSetDTO.setEventType(eventTypeRepository.findAll() );
+        taskSetDTO.setUnit(unitsRepository.findAll());
+        taskSetDTO.setFacilities(facilitiesRepository.findAll());
+        taskSetDTO.setTasks(tasksRepository.findAll());
         return taskSetDTO;
     }
 
