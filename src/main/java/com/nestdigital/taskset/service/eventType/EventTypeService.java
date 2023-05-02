@@ -9,6 +9,5 @@ public interface EventTypeService {
 
     Optional<EventType> findEventType(int id);
 
-    List<EventType> getEventTypes();
 
 }

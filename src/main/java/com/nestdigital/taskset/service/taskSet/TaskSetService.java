@@ -1,7 +1,7 @@
 package com.nestdigital.taskset.service.taskSet;
 
 
-import com.nestdigital.taskset.dto.TaskSetDTO;
+import com.nestdigital.taskset.dto.UnitsEventsFacilityDto;
 import com.nestdigital.taskset.model.taskSet.TaskSet;
 
 import java.util.List;
@@ -17,8 +17,7 @@ public interface TaskSetService {
 
     String deleteTaskSet(int id);
 
-    TaskSetDTO convertEntityToDTO(TaskSet taskSet);
-    List<TaskSetDTO> getTaskSetList();
+    UnitsEventsFacilityDto getTaskSetList(TaskSet taskSet);
 
 
 

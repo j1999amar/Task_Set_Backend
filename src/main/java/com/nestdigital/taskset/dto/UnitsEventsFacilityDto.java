@@ -6,11 +6,11 @@ import com.nestdigital.taskset.model.tasks.Tasks;
 import com.nestdigital.taskset.model.units.Units;
 import lombok.Data;
 
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+
 
 @Data
-public class TaskSetDTO {
+public class UnitsEventsFacilityDto {
     private List<EventType> eventType;
     private List<Units> unit;
     private List<Facilities> facilities;

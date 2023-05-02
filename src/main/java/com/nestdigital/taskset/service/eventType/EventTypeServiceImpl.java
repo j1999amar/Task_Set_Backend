@@ -5,8 +5,8 @@ import com.nestdigital.taskset.repository.eventType.EventTypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
+
 
 @Service
 public class EventTypeServiceImpl implements EventTypeService {
@@ -17,12 +17,6 @@ public class EventTypeServiceImpl implements EventTypeService {
     @Override
     public Optional<EventType> findEventType(int id) {
         return eventTypeRepository.findById(id);
-    }
-
-    @Override
-    public List<EventType> getEventTypes() {
-        List<EventType> eventTypeList = eventTypeRepository.findAll();
-        return eventTypeList;
     }
 
 

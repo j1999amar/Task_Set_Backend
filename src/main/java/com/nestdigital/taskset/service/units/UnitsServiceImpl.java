@@ -18,9 +18,5 @@ public class UnitsServiceImpl implements UnitsService {
         return unitsRepository.findById(id);
     }
 
-    @Override
-    public List<Units> getUnits() {
-        List<Units> unitsList=unitsRepository.findAll();
-        return unitsList;
-    }
+
 }

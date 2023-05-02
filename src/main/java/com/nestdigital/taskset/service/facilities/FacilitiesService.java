@@ -8,5 +8,4 @@ import java.util.Optional;
 public interface FacilitiesService {
 
     Optional<Facilities> findFacility(int id);
-    List<Facilities> getFacilities();
 }
