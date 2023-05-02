@@ -18,10 +18,6 @@ public class FacilitiesServiceImpl implements FacilitiesService{
         return facilitiesRepository.findById(id);
     }
 
-    @Override
-    public List<Facilities> getFacilities() {
-        List<Facilities> facilitiesList=facilitiesRepository.findAll();
-        return facilitiesList;
-    }
+
 
 }

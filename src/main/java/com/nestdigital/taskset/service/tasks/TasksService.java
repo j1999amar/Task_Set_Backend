@@ -7,6 +7,4 @@ import java.util.Optional;
 
 public interface TasksService {
     Optional<Tasks> findTask(int id);
-    List<Tasks> getTasks();
-    List<Tasks> getTasksById(int id);
 }

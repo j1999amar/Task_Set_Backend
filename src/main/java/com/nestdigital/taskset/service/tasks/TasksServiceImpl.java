@@ -17,16 +17,8 @@ public class TasksServiceImpl implements TasksService {
         return tasksRepository.findById(id);
     }
 
-    @Override
-    public List<Tasks> getTasks() {
-        List<Tasks> tasksList=tasksRepository.findAll();
-        return tasksList;
-    }
 
-    @Override
-    public List<Tasks> getTasksById(int id) {
-        return null;
-    }
+
 
 
 
