@@ -1,5 +1,6 @@
 package com.nestdigital.taskset.controller.taskSet;
 
+import com.nestdigital.taskset.dto.TaskSetDTO;
 import com.nestdigital.taskset.model.eventType.EventType;
 import com.nestdigital.taskset.model.facilities.Facilities;
 import com.nestdigital.taskset.model.taskSet.TaskSet;
@@ -73,6 +74,11 @@ public class TestSetController {
     List<TaskSet> getTaskSet(){
         List<TaskSet> taskSetList=taskSetService.getTaskSet();
         return taskSetList;
+    }
+    @GetMapping("/getTaskSetList")
+    List<TaskSetDTO> getTaskSetList(){
+
+        return taskSetService.getTaskSetList();
     }
 
     @PostMapping("/getTaskSetById/{id}")

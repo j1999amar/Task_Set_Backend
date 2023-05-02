@@ -1,19 +1,37 @@
 package com.nestdigital.taskset.service.taskSet;
 
+import com.nestdigital.taskset.dto.TaskSetDTO;
+import com.nestdigital.taskset.model.eventType.EventType;
+import com.nestdigital.taskset.model.facilities.Facilities;
 import com.nestdigital.taskset.model.taskSet.TaskSet;
+import com.nestdigital.taskset.model.units.Units;
+import com.nestdigital.taskset.repository.eventType.EventTypeRepository;
+import com.nestdigital.taskset.repository.facilities.FacilitiesRepository;
 import com.nestdigital.taskset.repository.taskSet.TaskSetRepository;
+import com.nestdigital.taskset.repository.tasks.TasksRepository;
+import com.nestdigital.taskset.repository.units.UnitsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 
 @Service
 public class TaskSetServiceImpl implements TaskSetService {
     @Autowired
     TaskSetRepository taskSetRepository;
+    @Autowired
+    EventTypeRepository eventTypeRepository;
+    @Autowired
+    UnitsRepository unitsRepository;
+    @Autowired
+    FacilitiesRepository facilitiesRepository;
+    @Autowired
+    TasksRepository tasksRepository;
+
 
     @Override
     public TaskSet updateTaskSet(TaskSet taskSet) {
@@ -70,6 +88,21 @@ public class TaskSetServiceImpl implements TaskSetService {
 
         }
 
+    }
+
+    @Override
+    public TaskSetDTO convertEntityToDTO(TaskSet taskSet) {
+        TaskSetDTO taskSetDTO=new TaskSetDTO();
+        taskSetDTO.setEventType(eventTypeRepository.findAll() );
+        taskSetDTO.setUnit(unitsRepository.findAll());
+        taskSetDTO.setFacilities(facilitiesRepository.findAll());
+        taskSetDTO.setTasks(tasksRepository.findAll());
+        return taskSetDTO;
+    }
+
+    @Override
+    public List<TaskSetDTO> getTaskSetList() {
+        return taskSetRepository.findAll().stream().map(this::convertEntityToDTO).collect(Collectors.toList());
     }
 
 }
