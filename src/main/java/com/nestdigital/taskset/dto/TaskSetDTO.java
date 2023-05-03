@@ -8,19 +8,21 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.*;
-
+import java.util.Set;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UnitsEventsFacilityDto {
-    private List<EventType> eventType;
-    private List<Units> unit;
-    private List<Facilities> facilities;
-    private List<Tasks> tasks;
-
-
+public class TaskSetDTO {
+    private int id;
+    private String name;
+    private String description;
+    private Units unit;
+    private EventType eventType;
+    private Facilities facilities;
+    private boolean applyToAll = false;
+    private boolean isdeleted = false;
+    private Set<Tasks> tasks;
 
 
 }

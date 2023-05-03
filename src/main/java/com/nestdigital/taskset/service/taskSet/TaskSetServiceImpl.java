@@ -1,5 +1,6 @@
 package com.nestdigital.taskset.service.taskSet;
 
+import com.nestdigital.taskset.dto.TaskSetDTO;
 import com.nestdigital.taskset.dto.UnitsEventsFacilityDto;
 import com.nestdigital.taskset.model.taskSet.TaskSet;
 import com.nestdigital.taskset.repository.eventType.EventTypeRepository;
@@ -10,6 +11,7 @@ import com.nestdigital.taskset.repository.units.UnitsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
@@ -48,27 +50,7 @@ public class TaskSetServiceImpl implements TaskSetService {
         return taskSetRepository.findById(id);
     }
 
-    @Override
-    public List<TaskSet> getTaskSet() {
 
-        List<TaskSet> taskSetList = taskSetRepository.findAll();
-        Iterator<TaskSet> iterator = taskSetList.iterator();
-        while (iterator.hasNext()) {
-            TaskSet taskSet = iterator.next();
-            if (taskSet.isIsdeleted()) {
-                iterator.remove();
-            }
-
-        }
-        return taskSetList;
-    }
-
-    @Override
-    public Optional<TaskSet> getTaskSetById(int id) {
-        Optional<TaskSet> taskSetList = taskSetRepository.findById(id);
-        System.out.println(taskSetList);
-        return taskSetList;
-    }
 
     @Override
     public String deleteTaskSet(int id) {
@@ -92,7 +74,7 @@ public class TaskSetServiceImpl implements TaskSetService {
     }
 
     @Override
-    public UnitsEventsFacilityDto getTaskSetList(TaskSet taskSet) {
+    public UnitsEventsFacilityDto getUnitsEventsFacilityList(TaskSet taskSet) {
         UnitsEventsFacilityDto taskSetDTO = new UnitsEventsFacilityDto();
         taskSetDTO.setEventType(eventTypeRepository.findAll());
 
@@ -107,6 +89,28 @@ public class TaskSetServiceImpl implements TaskSetService {
         return taskSetDTO;
     }
 
+
+
+    @Override
+    public List<TaskSetDTO> getTaskSetAllList() {
+        List<TaskSetDTO> taskSetDTO = new ArrayList<>();
+        taskSetDTO=taskSetRepository.findAll().stream().map(taskSet -> new TaskSetDTO(taskSet.getId(),
+                taskSet.getName(),
+                taskSet.getDescription(),
+                taskSet.getUnit(),
+                taskSet.getEventType(),
+                taskSet.getFacilities(),
+                taskSet.isApplyToAll(),
+                taskSet.isIsdeleted(),
+                taskSet.getTasks())).collect(Collectors.toList());
+
+        for(TaskSetDTO dto : taskSetDTO){
+            if(dto.isIsdeleted()==true)
+            taskSetDTO.remove(dto);
+        }
+
+        return taskSetDTO;
+    }
 
 
 }
