@@ -1,5 +1,6 @@
 package com.nestdigital.taskset.controller.taskSet;
 
+import com.nestdigital.taskset.dto.TaskSetDTO;
 import com.nestdigital.taskset.dto.UnitsEventsFacilityDto;
 import com.nestdigital.taskset.model.eventType.EventType;
 import com.nestdigital.taskset.model.facilities.Facilities;
@@ -71,20 +72,20 @@ public class TestSetController {
     }
 
     @GetMapping("/getTaskSet")
-    List<TaskSet> getTaskSet(){
-        List<TaskSet> taskSetList=taskSetService.getTaskSet();
-        return taskSetList;
+    List<TaskSetDTO> getTaskSet(TaskSet taskSet){
+//        List<TaskSet> taskSetList=taskSetService.getTaskSet();
+        return taskSetService.getTaskSetAllList();
     }
     @GetMapping("/getTaskSetList")
     UnitsEventsFacilityDto getTaskSetList(TaskSet taskSet){
-        return taskSetService.getTaskSetList(taskSet);
+        return taskSetService.getUnitsEventsFacilityList(taskSet);
     }
 
-    @PostMapping("/getTaskSetById/{id}")
-    Optional<TaskSet> getTaskSetById(@PathVariable int id){
-        Optional<TaskSet> taskSetList=taskSetService.getTaskSetById(id);
-        return taskSetList ;
-    }
+//    @PostMapping("/getTaskSetById/{id}")
+//    Optional<TaskSet> getTaskSetById(@PathVariable int id){
+//        Optional<TaskSet> taskSetList=taskSetService.getTaskSetById(id);
+//        return taskSetList ;
+//    }
     @PostMapping("/deleteTaskSet/{id}")
     String deleteTaskSet(@PathVariable int id){
         return taskSetService.deleteTaskSet(id);
