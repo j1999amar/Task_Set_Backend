@@ -1,7 +1,8 @@
-package com.nestdigital.taskset.service.eventType;
+package com.nestdigital.taskset.service.impl;
 
-import com.nestdigital.taskset.model.eventType.EventType;
-import com.nestdigital.taskset.repository.eventType.EventTypeRepository;
+import com.nestdigital.taskset.model.dao.EventType;
+import com.nestdigital.taskset.repository.EventTypeRepository;
+import com.nestdigital.taskset.service.EventTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,6 +1,6 @@
-package com.nestdigital.taskset.repository.facilities;
+package com.nestdigital.taskset.repository;
 
-import com.nestdigital.taskset.model.facilities.Facilities;
+import com.nestdigital.taskset.model.dao.Facilities;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,7 +1,6 @@
-package com.nestdigital.taskset.model.tasks;
+package com.nestdigital.taskset.model.dao;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.nestdigital.taskset.model.taskSet.TaskSet;
 import jakarta.persistence.*;
 import lombok.*;
 

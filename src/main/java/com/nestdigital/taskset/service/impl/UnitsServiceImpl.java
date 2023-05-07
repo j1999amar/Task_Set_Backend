@@ -1,11 +1,11 @@
-package com.nestdigital.taskset.service.units;
+package com.nestdigital.taskset.service.impl;
 
-import com.nestdigital.taskset.model.units.Units;
-import com.nestdigital.taskset.repository.units.UnitsRepository;
+import com.nestdigital.taskset.model.dao.Units;
+import com.nestdigital.taskset.repository.UnitsRepository;
+import com.nestdigital.taskset.service.UnitsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service

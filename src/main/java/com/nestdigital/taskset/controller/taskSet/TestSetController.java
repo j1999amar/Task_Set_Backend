@@ -1,17 +1,17 @@
 package com.nestdigital.taskset.controller.taskSet;
 
-import com.nestdigital.taskset.dto.TaskSetDTO;
-import com.nestdigital.taskset.dto.UnitsEventsFacilityDto;
-import com.nestdigital.taskset.model.eventType.EventType;
-import com.nestdigital.taskset.model.facilities.Facilities;
-import com.nestdigital.taskset.model.taskSet.TaskSet;
-import com.nestdigital.taskset.model.tasks.Tasks;
-import com.nestdigital.taskset.model.units.Units;
-import com.nestdigital.taskset.service.eventType.EventTypeService;
-import com.nestdigital.taskset.service.facilities.FacilitiesService;
-import com.nestdigital.taskset.service.taskSet.TaskSetService;
-import com.nestdigital.taskset.service.tasks.TasksService;
-import com.nestdigital.taskset.service.units.UnitsService;
+import com.nestdigital.taskset.model.dto.TaskSetDTO;
+import com.nestdigital.taskset.model.dto.UnitsEventsFacilityDto;
+import com.nestdigital.taskset.model.dao.EventType;
+import com.nestdigital.taskset.model.dao.Facilities;
+import com.nestdigital.taskset.model.dao.TaskSet;
+import com.nestdigital.taskset.model.dao.Tasks;
+import com.nestdigital.taskset.model.dao.Units;
+import com.nestdigital.taskset.service.EventTypeService;
+import com.nestdigital.taskset.service.FacilitiesService;
+import com.nestdigital.taskset.service.TaskSetService;
+import com.nestdigital.taskset.service.TasksService;
+import com.nestdigital.taskset.service.UnitsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,6 +33,7 @@ public class TestSetController {
     @Autowired
     TasksService tasksService;
 
+    @CrossOrigin("*")
     @PutMapping(value = "/{id}", consumes = "application/json")
     public String updateTaskSet(@PathVariable int id, @RequestBody TaskSet taskSet) {
 
@@ -41,51 +42,48 @@ public class TestSetController {
         Optional<Units> units = unitsService.findUnits(taskSet.getUnit().getId());
         Optional<EventType> eventType = eventTypeService.findEventType(taskSet.getEventType().getId());
         Optional<Facilities> facilities = facilitiesService.findFacility(taskSet.getFacilities().getId());
-        Optional<Tasks> taskList = null;
+        List<Tasks> taskList=tasksService.findAllTask();
 
         for (Tasks t : taskSet.getTasks()) {
-            taskList = tasksService.findTask(t.getId());
+            Optional<Tasks>task = tasksService.findTask(t.getId());
         }
 
 
-        if (taskSet1.isEmpty()) {
+        if (taskSet1.isEmpty()|| taskSet1==null) {
             return "invalid task set  ";
 
-        } else if (units.isEmpty()) {
+        } else if (units.isEmpty()|| units==null) {
             return "invalid units  ";
 
-        } else if (eventType.isEmpty()) {
+        } else if (eventType.isEmpty()|| eventType==null) {
             {
                 return "invalid event type  ";
             }
-        } else if (facilities.isEmpty()) {
+        } else if (facilities.isEmpty()|| facilities==null) {
             {
                 return "invalid facility type  ";
             }
-        } else if (taskList.isEmpty()) {
+        } else if (taskList.isEmpty() || taskList==null) {
             return "invaild task ";
         } else {
             taskSetService.updateTaskSet(taskSet);
         }
 
-        return "success";
+        return "{\"status\":\"success\"}";
     }
 
-    @GetMapping("/getTaskSet")
+    @CrossOrigin("*")
+    @GetMapping("/getTaskSetList")
     List<TaskSetDTO> getTaskSet(TaskSet taskSet){
-//        List<TaskSet> taskSetList=taskSetService.getTaskSet();
         return taskSetService.getTaskSetAllList();
     }
-    @GetMapping("/getTaskSetList")
+    @CrossOrigin("*")
+    @GetMapping("/getAllFieldList")
     UnitsEventsFacilityDto getTaskSetList(TaskSet taskSet){
         return taskSetService.getUnitsEventsFacilityList(taskSet);
     }
 
-//    @PostMapping("/getTaskSetById/{id}")
-//    Optional<TaskSet> getTaskSetById(@PathVariable int id){
-//        Optional<TaskSet> taskSetList=taskSetService.getTaskSetById(id);
-//        return taskSetList ;
-//    }
+
     @PostMapping("/deleteTaskSet/{id}")
     String deleteTaskSet(@PathVariable int id){
         return taskSetService.deleteTaskSet(id);

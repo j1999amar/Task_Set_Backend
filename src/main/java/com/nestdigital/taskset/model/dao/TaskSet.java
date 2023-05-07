@@ -1,9 +1,5 @@
-package com.nestdigital.taskset.model.taskSet;
+package com.nestdigital.taskset.model.dao;
 
-import com.nestdigital.taskset.model.eventType.EventType;
-import com.nestdigital.taskset.model.facilities.Facilities;
-import com.nestdigital.taskset.model.tasks.Tasks;
-import com.nestdigital.taskset.model.units.Units;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

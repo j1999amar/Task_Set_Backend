@@ -1,9 +1,9 @@
-package com.nestdigital.taskset.service.taskSet;
+package com.nestdigital.taskset.service;
 
 
-import com.nestdigital.taskset.dto.TaskSetDTO;
-import com.nestdigital.taskset.dto.UnitsEventsFacilityDto;
-import com.nestdigital.taskset.model.taskSet.TaskSet;
+import com.nestdigital.taskset.model.dto.TaskSetDTO;
+import com.nestdigital.taskset.model.dto.UnitsEventsFacilityDto;
+import com.nestdigital.taskset.model.dao.TaskSet;
 
 import java.util.List;
 import java.util.Optional;

@@ -1,7 +1,8 @@
-package com.nestdigital.taskset.service.tasks;
+package com.nestdigital.taskset.service.impl;
 
-import com.nestdigital.taskset.model.tasks.Tasks;
-import com.nestdigital.taskset.repository.tasks.TasksRepository;
+import com.nestdigital.taskset.model.dao.Tasks;
+import com.nestdigital.taskset.repository.TasksRepository;
+import com.nestdigital.taskset.service.TasksService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +16,9 @@ public class TasksServiceImpl implements TasksService {
     @Override
     public Optional<Tasks> findTask(int id) {
         return tasksRepository.findById(id);
+    }
+    public List<Tasks> findAllTask() {
+        return tasksRepository.findAll();
     }
 
 

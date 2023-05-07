@@ -1,18 +1,18 @@
-package com.nestdigital.taskset.service.taskSet;
+package com.nestdigital.taskset.service.impl;
 
-import com.nestdigital.taskset.dto.TaskSetDTO;
-import com.nestdigital.taskset.dto.UnitsEventsFacilityDto;
-import com.nestdigital.taskset.model.taskSet.TaskSet;
-import com.nestdigital.taskset.repository.eventType.EventTypeRepository;
-import com.nestdigital.taskset.repository.facilities.FacilitiesRepository;
-import com.nestdigital.taskset.repository.taskSet.TaskSetRepository;
-import com.nestdigital.taskset.repository.tasks.TasksRepository;
-import com.nestdigital.taskset.repository.units.UnitsRepository;
+import com.nestdigital.taskset.model.dto.TaskSetDTO;
+import com.nestdigital.taskset.model.dto.UnitsEventsFacilityDto;
+import com.nestdigital.taskset.model.dao.TaskSet;
+import com.nestdigital.taskset.repository.EventTypeRepository;
+import com.nestdigital.taskset.repository.FacilitiesRepository;
+import com.nestdigital.taskset.repository.TaskSetRepository;
+import com.nestdigital.taskset.repository.TasksRepository;
+import com.nestdigital.taskset.repository.UnitsRepository;
+import com.nestdigital.taskset.service.TaskSetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -103,14 +103,10 @@ public class TaskSetServiceImpl implements TaskSetService {
                 taskSet.isApplyToAll(),
                 taskSet.isIsdeleted(),
                 taskSet.getTasks())).collect(Collectors.toList());
-
         for(TaskSetDTO dto : taskSetDTO){
             if(dto.isIsdeleted()==true)
             taskSetDTO.remove(dto);
         }
-
         return taskSetDTO;
     }
-
-
 }

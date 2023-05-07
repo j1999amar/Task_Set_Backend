@@ -1,7 +1,6 @@
-package com.nestdigital.taskset.model.facilities;
+package com.nestdigital.taskset.model.dao;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.nestdigital.taskset.model.taskSet.TaskSet;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -22,8 +21,6 @@ public class Facilities {
     @Column(name = "facility_name")
     private String facility;
 
-    @JsonBackReference
-    @OneToMany(mappedBy = "facilities", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<TaskSet> taskSets = new ArrayList<>();
+
 }
 

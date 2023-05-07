@@ -1,7 +1,6 @@
-package com.nestdigital.taskset.model.eventType;
+package com.nestdigital.taskset.model.dao;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.nestdigital.taskset.model.taskSet.TaskSet;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -22,9 +21,7 @@ public class EventType {
     @Column(name = "event_type_name")
     private String eventType;
 
-    @JsonBackReference
-    @OneToMany(mappedBy = "eventType", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<TaskSet> taskSets = new ArrayList<>();
+
 }
 
 

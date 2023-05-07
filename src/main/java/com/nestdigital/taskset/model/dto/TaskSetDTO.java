@@ -1,9 +1,9 @@
-package com.nestdigital.taskset.dto;
+package com.nestdigital.taskset.model.dto;
 
-import com.nestdigital.taskset.model.eventType.EventType;
-import com.nestdigital.taskset.model.facilities.Facilities;
-import com.nestdigital.taskset.model.tasks.Tasks;
-import com.nestdigital.taskset.model.units.Units;
+import com.nestdigital.taskset.model.dao.EventType;
+import com.nestdigital.taskset.model.dao.Facilities;
+import com.nestdigital.taskset.model.dao.Tasks;
+import com.nestdigital.taskset.model.dao.Units;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
