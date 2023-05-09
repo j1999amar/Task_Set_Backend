@@ -1,25 +1,18 @@
-package com.nestdigital.taskset.controller.taskSet;
+package com.nestdigital.taskset.controller;
 
+import com.nestdigital.taskset.model.dao.*;
 import com.nestdigital.taskset.model.dto.TaskSetDTO;
 import com.nestdigital.taskset.model.dto.UnitsEventsFacilityDto;
-import com.nestdigital.taskset.model.dao.EventType;
-import com.nestdigital.taskset.model.dao.Facilities;
-import com.nestdigital.taskset.model.dao.TaskSet;
-import com.nestdigital.taskset.model.dao.Tasks;
-import com.nestdigital.taskset.model.dao.Units;
-import com.nestdigital.taskset.service.EventTypeService;
-import com.nestdigital.taskset.service.FacilitiesService;
-import com.nestdigital.taskset.service.TaskSetService;
-import com.nestdigital.taskset.service.TasksService;
-import com.nestdigital.taskset.service.UnitsService;
+import com.nestdigital.taskset.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
+
 @RestController
-public class TestSetController {
+public class TaskSetController {
     @Autowired
     TaskSetService taskSetService;
 

@@ -45,6 +45,7 @@ public class TaskSet {
     @JoinTable(name = "taskset_task", joinColumns = @JoinColumn(name = "taskset_id "), inverseJoinColumns = @JoinColumn(name = "task_id"))
     private Set<Tasks> tasks;
 
+
 }
 
 
